@@ -22,8 +22,8 @@ from random import randint
 unicorn.rotation(0)
 
 # Display brightness (0...1, 1 is very very very bright)
-brightness_min = 0.01
-brightness_max = 0.05
+brightness_min = 0.3
+brightness_max = 0.6
 estimate_brightness = 1
 
 # Text font
