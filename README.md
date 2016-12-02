@@ -1,6 +1,6 @@
 # unicorn-scroller
 
-A scrolling information display using a Rasperry Pi and a Pimoroni Unicorn Hat.  
+A scrolling information display for the Pimoroni Unicorn HAT/PHAT on Raspberry Pi.  
 By Andrew Wedgbury <wedge@sconemad.com>  
 
 ## Setup

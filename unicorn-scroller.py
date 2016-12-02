@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-# unicorn-scroller - A scrolling information display using a Rasperry Pi
-# and a Pimoroni Unicorn Hat.
+# unicorn-scroller - A scrolling information display for the
+# Pimoroni Unicorn HAT/PHAT on Raspberry Pi.
 #
 # By Andrew Wedgbury <wedge@sconemad.com>
-# See unicorn-scroller.md for more info
+# See README.md for more info
 # 
 
 import unicornhat as unicorn
@@ -49,6 +49,22 @@ messages_dir = 'messages'
 # Directory containing images
 images_dir = 'images'
 
+# Detect HAT or PHAT layout and adapt accordingly
+# If yours isn't detected properly, then you may need
+# to change the following line to say HAT or PHAT
+# instead of AUTO:
+unicorn.set_layout(unicorn.AUTO)
+geom = unicorn.get_shape()
+if (geom[0] != geom[1]):
+  unicorn.set_layout([
+    [0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 ],
+    [8 , 9 , 10, 11, 12, 13, 14, 15],
+    [16, 17, 18, 19, 20, 21, 22, 23],
+    [24, 25, 26, 27, 28, 29, 30, 31]
+  ])
+  step *= 2
+
+
 def set_brightness(pc):
     b = brightness_min + ((brightness_max - brightness_min) * pc / 100.0)
     if (b > brightness_max): b = brightness_max
@@ -90,8 +106,8 @@ def render(items):
 
 def scroll(image):
   width,height = image.size
-  for offset in range(-8,width):
-    for x in range(8):
+  for offset in range(-geom[1],width):
+    for x in range(geom[1]):
       for y in range(8):
         if ((x+offset < 0) | (x+offset >= width)):
           r,g,b = ImageColor.getrgb(back)
