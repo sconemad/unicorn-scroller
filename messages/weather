@@ -48,13 +48,13 @@ def get_weather():
     import feedparser
     weather = ''
     # Current weather conditions
-    url = "http://open.live.bbc.co.uk/weather/feeds/en/%s/observations.rss" % (weather_id)
+    url = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/%s" % (weather_id)
     feed = feedparser.parse(url)
     fitems = feed["items"]
     weather += parse_weather(fitems[0].title)
 
     # 3-day forecast
-    url = "http://open.live.bbc.co.uk/weather/feeds/en/%s/3dayforecast.rss" % (weather_id)
+    url = "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/%s" % (weather_id)
     feed = feedparser.parse(url)
     fitems = feed["items"]
     for fitem in fitems:
